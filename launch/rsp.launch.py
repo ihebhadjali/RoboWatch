@@ -19,11 +19,9 @@ def generate_launch_description():
     pkg_path = os.path.join(get_package_share_directory('robowatch'))
     xacro_file = os.path.join(pkg_path,'description','robot.urdf.xacro')
     robot_description_config = xacro.process_file(xacro_file)
-    print("Processed XML:", robot_description_config.toxml()) # Debugging
     
     # Create a robot_state_publisher node
     params = {'robot_description': robot_description_config.toxml(), 'use_sim_time': use_sim_time}
-    print("Params:", params)  # Debugging
     node_robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
